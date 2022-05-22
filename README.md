@@ -21,8 +21,7 @@ For easiest way to getting started, extract this project and open it from Intell
 
 ## Framework - How it works
 
-This framework uses principles of PageObject Pattern, it maps HTML components to their class (e.g. "Menu", "Product" - extends AbstractPageComponent) and their operations, a kind of "Page Object Pattern".
-We also use "keyword-driven" to provide more readability.
+This framework uses principles of PageObject Pattern, it maps HTML components to their class (e.g. "Menu", "Product" - extends AbstractPageComponent) and their operations.
 
 ## Locating elements
 
