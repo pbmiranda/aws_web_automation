@@ -1,7 +1,13 @@
 package amazon.pageobject;
 
 import org.openqa.selenium.WebDriver;
-
+/**
+ * 
+ * @author Phelipe Miranda
+ * 
+ * This class represents the Product of AWS Page and its operations
+ * 
+ */
 public class Product extends AbstractPageComponent{
 
 	public static String REF_SIDEBAR_ID = "s-refinements";	
@@ -16,24 +22,42 @@ public class Product extends AbstractPageComponent{
 	public Product(WebDriver driver) {
 		super(driver);		
 	}
-
-	public void selectRefinement(String sectionParentName, String item) {		
-		String xpath= "//*[@id='" + REF_SIDEBAR_ID + "']//span[text() ='" + sectionParentName+"']//parent::div//following-sibling::ul//a//span[normalize-space(text())='"+ item + "']//ancestor::a";
-		System.out.println(xpath);
+	
+	/**
+	 * This method selects a filter category and its item
+	 * Example filter category = "Brands" and item= "Apple"  
+	 * @param filterCategory 
+	 * @param item
+	 */
+	public void selectRefinement(String filterCategory, String item) {		
+		String xpath= "//*[@id='" + REF_SIDEBAR_ID + "']//span[text() ='" + filterCategory+"']//parent::div//following-sibling::ul//a//span[normalize-space(text())='"+ item + "']//ancestor::a";
 		clickByXPath(xpath);
 	}
 	
-	public void sortBy(String text) {		
-		clickByAttr("id",COMBO_ID);
+	/**
+	 *  This method selects a type of sorting of product list
+	 * @param text - the desired sorting
+	 */
+	public void sortBy(String text) {
+		clickByAttr("id",COMBO_ID);		
 		clickByParentIdAndText(COMBO_ITEM_ID, text);	
 	}
 	
+	/**
+	 * This method selects a product by its index 
+	 * @param index
+	 */
 	public void selectProductByIndex(String index){	
 		clickByAttr(IMG_INDEX_ATTR,index);	
 	}
 	
-	public String findTextInDescription(String section,String text) {
-		 return findByParentIdAndText(section, text).getText();
+	/**
+	 * This methods executes the assertion for product
+	 * by looking for specific text inside a component 
+	 * @param text - the desired text
+	 * @return true if finds
+	 */
+	public boolean assertion(String text) {
+		return findTexFromParentId(DESC_CENTER_COL, text);
 	}
-	
 }
