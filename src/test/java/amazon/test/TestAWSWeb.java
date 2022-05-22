@@ -13,6 +13,14 @@ import amazon.pageobject.Menu;
 import amazon.pageobject.Product;
 import amazon.pageobject.SearchBar;
 
+/**
+ * 
+ * @author Phelipe Miranda 
+ *  
+ * This class represents the Tests  
+ * Each method is associated to a file used as input
+ */
+
 public class TestAWSWeb extends TestAbstract {
 
 	private static Config config = EnvFactory.getInstance().getConfig();
@@ -30,8 +38,6 @@ public class TestAWSWeb extends TestAbstract {
 		String sortByCriteria = accessor.getString(5);
 		String productIndex = accessor.getString(6);
 		String mainAssertion = accessor.getString(7);
-
-		
 
 		Menu menu = new Menu(getDriver());
 		Product product = new Product(getDriver());
