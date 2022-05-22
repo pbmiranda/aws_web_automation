@@ -1,6 +1,7 @@
 package amazon.pageobject;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 /**
  * 
  * @author Phelipe Miranda
@@ -58,6 +59,10 @@ public class Product extends AbstractPageComponent{
 	 * @return true if finds
 	 */
 	public boolean assertion(String text) {
-		return findTexFromParentId(DESC_CENTER_COL, text);
+		WebElement e= findByParentIdAndTextContains(DESC_CENTER_COL, text);
+		if(e != null) {
+			return true;
+		}
+		return false;
 	}
 }
