@@ -11,6 +11,10 @@ public class SearchBar extends AbstractPageComponent{
 
 	public static String SEARCH_BAR_ID = "twotabsearchtextbox";	
 	public static String SEARCH_BUTTON_ID = "nav-search-submit-button";
+	
+	public static String SEARCH_COMBO_ID = "nav-search-dropdown-card";
+	public static String SEARCH_COMBO_ITEM_ID = "searchDropdownBox";
+	
 		
 	public SearchBar(WebDriver driver) {
 		super(driver);		
@@ -29,5 +33,11 @@ public class SearchBar extends AbstractPageComponent{
 	 */
 	public void type(String text) {
 		typeByAttr("id", SEARCH_BAR_ID, text);
-	}	
+	}
+	
+	
+	public void selectDepartament(String text) {	
+		clickByAttr("id",SEARCH_COMBO_ID);		
+		clickByParentIdAndText(SEARCH_COMBO_ID, text);	
+	}
 }

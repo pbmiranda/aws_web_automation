@@ -92,22 +92,52 @@ public class TestAWSWeb extends TestAbstract {
 	}
 	
 	@ParameterizedTest
+	@CsvFileSource(resources = "/test_data/mainFilterCategoriesScenarios.csv", delimiter = '|')
+	void mainFilterCategoriesScenarios(ArgumentsAccessor accessor) {
+		String menuAll = accessor.getString(0);
+		String sector = accessor.getString(1);
+		String subSector = accessor.getString(2);
+		String sectionFilter = accessor.getString(3);
+		String sectionFilterItem = accessor.getString(4);	
+		String productIndex = accessor.getString(5);
+		String mainAssertion = accessor.getString(6);
+
+		Menu menu = new Menu(getDriver());
+		Product product = new Product(getDriver());
+
+		menu.open(HOME_PAGE_URL);
+		menu.mainClick(menuAll);
+		menu.sideBarClick(sector);
+		menu.sideBarClick(subSector);
+
+		product.selectRefinement(sectionFilter, sectionFilterItem);		
+		product.selectProductByIndex(productIndex);
+		product.switchWindowByIndex(1);
+
+		assertTrue(product.assertion(mainAssertion));
+	}
+
+	
+	@ParameterizedTest
 	@CsvFileSource(resources = "/test_data/searchBarScenarios.csv", delimiter = '|')
 	void searchBarScenarios(ArgumentsAccessor argumentsAccessor) {
-		String searcBarText = argumentsAccessor.getString(0);
-		String sectionFilter = argumentsAccessor.getString(1);
-		String sectionFilterItem = argumentsAccessor.getString(2);
-		String productIndex = argumentsAccessor.getString(3);
-		String assertionText = argumentsAccessor.getString(4);
+		
+		String searcBarComboText = argumentsAccessor.getString(0);
+		String searcBarText = argumentsAccessor.getString(1);
+		String productIndex = argumentsAccessor.getString(2);
+		String assertionText = argumentsAccessor.getString(3);
 		
 		SearchBar searchBar = new SearchBar(getDriver());
 		Product product = new Product(getDriver());
 
 		searchBar.open(HOME_PAGE_URL);
+		
+		if(!searcBarComboText.equals("All Categories")) {
+			searchBar.selectDepartament(searcBarComboText);	
+		}		
 		searchBar.type(searcBarText);
 		searchBar.pressSearchButton();
 
-		product.selectRefinement(sectionFilter, sectionFilterItem);
 		product.selectProductByIndex(productIndex);
 		product.switchWindowByIndex(1);
 		assertTrue(product.assertion(assertionText));
