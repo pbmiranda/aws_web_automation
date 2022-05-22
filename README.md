@@ -33,21 +33,21 @@ We encourage to use this strategy or similiar. It helps to speed up the creation
 
 Main methods available in the AbstractPageComponent.
 
- ## findByParentIdAndText(String parentId, String text)	
+ ### findByParentIdAndText(String parentId, String text)	
 	Pass the id of parent element and the text of the desired element.Examples:
 	findByParentIdAndText("nav-main", "Mobiles")
 
-  ## clickByAttr - find by attribute and click
+ ### clickByAttr - find by attribute and click
 	Pass the name of attribute and its value.
 	clickByAtt("id","menu-product");
 	clickByAtt("class","menu-visible");
 	clickByAtt("data-image-index","1");
 		
- ## typeByAttr - find by attribute and type
+ ### typeByAttr - find by attribute and type
 	Pass the name of attribute, attribute value and the text. 
 	typeByAttr("id", "search-bar-id", "IPhone");  
    
- ## clickByXPath - find by xpath and click
+ ### clickByXPath - find by xpath and click
     Pass the xpath, sometines we need a more sofisticated strategy to locate
 	clickByXPath("//ul//a//span[normalize-space(text())='Eletronics']//ancestor::a");
 		 
