@@ -34,18 +34,18 @@ We encourage to use this strategy or similiar. It helps to speed up the creation
 The method is AbstractPageComponent.findByParentIdAndText(String parentId, String text).
 
 Another methods available for locatiing elements on AbstractPageComponent
-    #### clickByAtt: pass the name of attribute and its value.Examples:
+   ### clickByAtt: pass the name of attribute and its value.Examples:
 	clickByAtt("id","menu-product");
 	clickByAtt("class","menu-visible");
 	clickByAtt("data-image-index","1");
 		
-   ####typeByAtt: pass the name of attribute, attribute value and the text. Examples:
+   ### typeByAtt: pass the name of attribute, attribute value and the text. Examples:
 		typeByAttr("id", "search-bar-id", "IPhone");  
    
-   ####clickByXPath: pass the xpath, sometines we need a more sofisticated strategy to locate
+   ### clickByXPath: pass the xpath, sometines we need a more sofisticated strategy to locate
 		 clickByXPath("//ul//a//span[normalize-space(text())='Eletronics']//ancestor::a");
 		 
-   ####typeByXPath: pass the name of attribute and its value
+   ### typeByXPath: pass the name of attribute and its value
 		typeByXPath("//div[2]/div/form/div[3]/div/span/input","IPhone");
 
  
