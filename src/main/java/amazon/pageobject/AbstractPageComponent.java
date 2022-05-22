@@ -95,7 +95,7 @@ public abstract class AbstractPageComponent {
 	 * @return WebElement
 	 */
 	protected WebElement findByParentIdAndTextEquals(String parentId, String text) {
-		String xpath="//*[@id='"+parentId + "']//*[normalize-space(text())='"+ text +"']";		
+		String xpath="//*[@id='"+parentId + "']//*[normalize-space(text())='"+ text.trim() +"']";		
 		return driver.findElement(By.xpath(xpath));
 	}
 	
