@@ -32,9 +32,9 @@ The method is findByParentIdAndText(String parentId, String text).
 
 Another methods available for locatiing elements on AbstractPageComponent
    - clickByAtt: pass the name of attribute and its value.Examples:
-		-- clickByAtt("id","menu-product");
-		-- clickByAtt("class","menu-visible");
-		-- clickByAtt("data-image-index","1");
+	clickByAtt("id","menu-product");
+	clickByAtt("class","menu-visible");
+	clickByAtt("data-image-index","1");
 		
    - typeByAtt: pass the name of attribute, attribute value and the text. Examples:
 		typeByAttr("id", "search-bar-id", "IPhone");  
