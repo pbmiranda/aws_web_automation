@@ -88,13 +88,26 @@ public abstract class AbstractPageComponent {
 	}
 
 	/**
-	 * Find an element from its parent and by element text
+	 * Find an element from its parent id and by element text 
+	 *  Text match must be equals 
 	 * @param parentId - the id of element's parent
 	 * @param text - the element text of the desired element
 	 * @return WebElement
 	 */
-	protected WebElement findByParentIdAndText(String parentId, String text) {
+	protected WebElement findByParentIdAndTextEquals(String parentId, String text) {
 		String xpath="//*[@id='"+parentId + "']//*[normalize-space(text())='"+ text +"']";		
+		return driver.findElement(By.xpath(xpath));
+	}
+	
+	/**
+	 * Find an element from its parent id and by element text
+	 * Text match as contains text 
+	 * @param parentId - the id of element's parent
+	 * @param text - the element text of the desired element
+	 * @return WebElement
+	 */
+	protected WebElement findByParentIdAndTextContains(String parentId, String text) {
+		String xpath="//*[@id='"+parentId + "']//*[contains(normalize-space(text()),'"+ text.trim() +"')]";		
 		return driver.findElement(By.xpath(xpath));
 	}
 	
@@ -105,7 +118,7 @@ public abstract class AbstractPageComponent {
 	 * @return WebElement
 	 */
 	protected void clickByParentIdAndText(String parentId, String text) {
-		findByParentIdAndText(parentId, text).click();
+		findByParentIdAndTextEquals(parentId, text).click();
 	}
 	
 	/**
@@ -116,22 +129,15 @@ public abstract class AbstractPageComponent {
 		String[] windows = driver.getWindowHandles().toArray(new String[driver.getWindowHandles().size()]);
 		driver.switchTo().window(windows[index]);
 	}
-	
-	/**
-	 *  This methods find a text from a specific section of a selected product.
-	 *  It can be used in conjunction of assertion 
-	 * @param parentId  - id of the parent element
-	 * @param text  - the desired text
-	 * @return boolean
-	 */
-	protected boolean findTexFromParentId(String parentId,String text) {
-		WebElement e=findByParentIdAndText(parentId, text);		
-		if(e != null && e.getText().trim().equals(text.trim())) {
-			return true;
-		}
-		 return false;
-	}
 
+	/**
+	 * Opens a url
+	 * @param url
+	 */
+	public void open(String url) {
+		driver.get(url);
+	}
+	
 	/**
 	 *  Perform sleep
 	 * @param sleep - time in millisecconds
