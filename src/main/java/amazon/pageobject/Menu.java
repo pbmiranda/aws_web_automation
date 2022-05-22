@@ -20,7 +20,7 @@ public class Menu extends AbstractPageComponent{
 	}
 	
 	/**
-	 *  Click on main menu by text element
+	 *  Click on main menu by its parent id and text element
 	 * @param text
 	 */
 	public void mainClick(String text) {				
