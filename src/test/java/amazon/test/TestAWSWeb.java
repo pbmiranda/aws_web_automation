@@ -57,6 +57,41 @@ public class TestAWSWeb extends TestAbstract {
 
 	
 	@ParameterizedTest
+	@CsvFileSource(resources = "/test_data/amazonPrimeScenarios.csv", delimiter = '|')
+	void amazonPrimeScenarios(ArgumentsAccessor accessor) {
+
+		String menuAll = accessor.getString(0);
+		
+		String sector = accessor.getString(1);
+		String subSector = accessor.getString(2);
+		
+		String sectionFilter1 = accessor.getString(3);
+		String sectionFilterItem1 = accessor.getString(4);		
+		
+		String sectionFilter2 = accessor.getString(5);
+		String sectionFilterItem2 = accessor.getString(6);
+		
+		String productIndex = accessor.getString(7);
+		String mainAssertion = accessor.getString(8);
+
+		Menu menu = new Menu(getDriver());
+		Product product = new Product(getDriver());
+
+		menu.open(HOME_PAGE_URL);
+		menu.mainClick(menuAll);
+		menu.sideBarClick(sector);
+		menu.sideBarClick(subSector);
+
+		product.selectRefinement(sectionFilter1, sectionFilterItem1);
+		product.selectRefinement(sectionFilter2, sectionFilterItem2);	
+		
+		product.selectProductByIndex(productIndex);
+		product.switchWindowByIndex(1);
+
+		assertTrue(product.assertion(mainAssertion));
+	}
+	
+	@ParameterizedTest
 	@CsvFileSource(resources = "/test_data/searchBarScenarios.csv", delimiter = '|')
 	void searchBarScenarios(ArgumentsAccessor argumentsAccessor) {
 		String searcBarText = argumentsAccessor.getString(0);
