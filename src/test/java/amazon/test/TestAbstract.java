@@ -15,9 +15,6 @@ public abstract class TestAbstract {
 		return driver;
 	}
 
-	protected void open(String url) {
-		driver.get(url);
-	}
 
 	@BeforeEach
 	void setUp() {
