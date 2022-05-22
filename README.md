@@ -48,15 +48,15 @@ Main methods available in the AbstractPageComponent.
 	typeByAttr("id", "search-bar-id", "IPhone");  
    
  ### clickByXPath - find by xpath and click
-    Pass the xpath, sometines we need a more sofisticated strategy to locate
+    Pass the xpath, sometimes we need a more sophisticated strategy
 	clickByXPath("//ul//a//span[normalize-space(text())='Eletronics']//ancestor::a");
 		 
  ## typeByXPath - find by xpath and type
     Pass the xpath strategy
 	typeByXPath("//div[2]/div/form/div[3]/div/span/input","IPhone");
    
-
- 
+## Test Data
+The files containing the test data are located in /resources/test_data. For each file we specify the same test method name (e.g. sortByScenarios.csv).
 
 
 
