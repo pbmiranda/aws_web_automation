@@ -40,6 +40,7 @@ public class Product extends AbstractPageComponent{
 	 * @param text - the desired sorting
 	 */
 	public void sortBy(String text) {
+		await(1000); // for firefox,needed to be investigated
 		clickByAttr("id",COMBO_ID);		
 		clickByParentIdAndText(COMBO_ITEM_ID, text);	
 	}
