@@ -22,27 +22,30 @@ Tip: Do remember to update this readme file for anything else that you think nee
 
 ## Framework - How it works
 
-This framework maps HTML components/sections to their class (e.g. "Menu", "Product" - extends AbstractPageComponent) and their operations, a kind of "Page Object Pattern".
+This framework uses principles of PageObject Pattern, it maps HTML components to their class (e.g. "Menu", "Product" - extends AbstractPageComponent) and their operations, a kind of "Page Object Pattern".
 We also use "keyword-driven" to provide more readability.
+
+### Locating elements
 
 One of the element finding strategy used in this framework is to first find the parent element via parentId, and then find the desired element(item on menu) via text.
 For example: first we find the ID of the main menu and then we find the desired element using the text ("Mobile", "Eletronics")
 We encourage to use this strategy or similiar. It helps to speed up the creation and maintenance of scripts, as it is more readable and natural.
-The method is findByParentIdAndText(String parentId, String text).
+
+The method is AbstractPageComponent.findByParentIdAndText(String parentId, String text).
 
 Another methods available for locatiing elements on AbstractPageComponent
-   - clickByAtt: pass the name of attribute and its value.Examples:
+    #### clickByAtt: pass the name of attribute and its value.Examples:
 	clickByAtt("id","menu-product");
 	clickByAtt("class","menu-visible");
 	clickByAtt("data-image-index","1");
 		
-   - typeByAtt: pass the name of attribute, attribute value and the text. Examples:
+   ####typeByAtt: pass the name of attribute, attribute value and the text. Examples:
 		typeByAttr("id", "search-bar-id", "IPhone");  
    
-   - clickByXPath: pass the xpath, sometines we need a more sofisticated strategy to locate
+   ####clickByXPath: pass the xpath, sometines we need a more sofisticated strategy to locate
 		 clickByXPath("//ul//a//span[normalize-space(text())='Eletronics']//ancestor::a");
 		 
-   - typeByXPath: pass the name of attribute and its value
+   ####typeByXPath: pass the name of attribute and its value
 		typeByXPath("//div[2]/div/form/div[3]/div/span/input","IPhone");
 
  
