@@ -37,7 +37,7 @@ Main methods available in the AbstractPageComponent.
 	Pass the id of parent element and the text of the desired element.Examples:
 	findByParentIdAndText("nav-main", "Mobiles")
 
- ### clickByAtt
+  ### clickByAtt
 	Pass the name of attribute and its value.
 	clickByAtt("id","menu-product");
 	clickByAtt("class","menu-visible");
@@ -52,8 +52,9 @@ Main methods available in the AbstractPageComponent.
 	clickByXPath("//ul//a//span[normalize-space(text())='Eletronics']//ancestor::a");
 		 
  ### typeByXPath: 
-   Pass the xpath strategy
-   typeByXPath("//div[2]/div/form/div[3]/div/span/input","IPhone");
+    Pass the xpath strategy
+	typeByXPath("//div[2]/div/form/div[3]/div/span/input","IPhone");
+   
 
  
 
