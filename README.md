@@ -25,28 +25,35 @@ Tip: Do remember to update this readme file for anything else that you think nee
 This framework uses principles of PageObject Pattern, it maps HTML components to their class (e.g. "Menu", "Product" - extends AbstractPageComponent) and their operations, a kind of "Page Object Pattern".
 We also use "keyword-driven" to provide more readability.
 
-### Locating elements
+## Locating elements
 
 One of the element finding strategy used in this framework is to first find the parent element via parentId, and then find the desired element(item on menu) via text.
 For example: first we find the ID of the main menu and then we find the desired element using the text ("Mobile", "Eletronics")
 We encourage to use this strategy or similiar. It helps to speed up the creation and maintenance of scripts, as it is more readable and natural.
 
-The method is AbstractPageComponent.findByParentIdAndText(String parentId, String text).
+Main methods available in the AbstractPageComponent.
 
-Another methods available for locatiing elements on AbstractPageComponent
-   ### clickByAtt: pass the name of attribute and its value.Examples:
+	### findByParentIdAndText(String parentId, String text).
+	Pass the id of parent element and the text of the desired element.Examples:
+	findByParentIdAndText("nav-main", "Mobiles")
+
+   ### clickByAtt
+	Pass the name of attribute and its value.
 	clickByAtt("id","menu-product");
 	clickByAtt("class","menu-visible");
 	clickByAtt("data-image-index","1");
 		
-   ### typeByAtt: pass the name of attribute, attribute value and the text. Examples:
-		typeByAttr("id", "search-bar-id", "IPhone");  
+   ### typeByAtt
+	Pass the name of attribute, attribute value and the text. 
+	typeByAttr("id", "search-bar-id", "IPhone");  
    
-   ### clickByXPath: pass the xpath, sometines we need a more sofisticated strategy to locate
-		 clickByXPath("//ul//a//span[normalize-space(text())='Eletronics']//ancestor::a");
+   ### clickByXPath
+    Pass the xpath, sometines we need a more sofisticated strategy to locate
+	clickByXPath("//ul//a//span[normalize-space(text())='Eletronics']//ancestor::a");
 		 
-   ### typeByXPath: pass the name of attribute and its value
-		typeByXPath("//div[2]/div/form/div[3]/div/span/input","IPhone");
+   ### typeByXPath: 
+   Pass the xpath strategy
+   typeByXPath("//div[2]/div/form/div[3]/div/span/input","IPhone");
 
  
 
