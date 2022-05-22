@@ -21,7 +21,7 @@ For easiest way to getting started, extract this project and open it from Intell
 
 ## Framework - How it works
 
-This framework uses principles of PageObject Pattern, it maps HTML components to their class (e.g. "Menu", "Product" - extends AbstractPageComponent) . For each class, we have specific operation. Example: product.sortBy("Price: Low to High").
+This framework uses principles of PageObject Pattern and "keyword-driven", it maps HTML components to their class (e.g. "Menu", "Product" - extends AbstractPageComponent) . For each class, we can have specific operations. Example: product.sortBy("Price: Low to High").
 
 ## Locating elements
 
