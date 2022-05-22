@@ -116,6 +116,21 @@ public abstract class AbstractPageComponent {
 		String[] windows = driver.getWindowHandles().toArray(new String[driver.getWindowHandles().size()]);
 		driver.switchTo().window(windows[index]);
 	}
+	
+	/**
+	 *  This methods find a text from a specific section of a selected product.
+	 *  It can be used in conjunction of assertion 
+	 * @param parentId  - id of the parent element
+	 * @param text  - the desired text
+	 * @return boolean
+	 */
+	protected boolean findTexFromParentId(String parentId,String text) {
+		WebElement e=findByParentIdAndText(parentId, text);		
+		if(e != null && e.getText().trim().equals(text.trim())) {
+			return true;
+		}
+		 return false;
+	}
 
 	/**
 	 *  Perform sleep
