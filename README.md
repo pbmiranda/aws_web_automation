@@ -64,8 +64,36 @@ Four scenarios are avaible, class TestAWSWeb:
  - mainFilterCategoriesScenarios: navigate to a product and select each of main caterogy filter ("Brands->Samsung", "Item Condition->New",etc)
  - searchBarScenarios: select differents departaments in the search bar and then search for a product
 
+## Docker 
+In this section, let's execute our automation using Docker.
+For that, we need a Selenium Server and for report we'll use Allure Report.
+
+### Generate the image
+Generate the image from project folder using the Dockerfile.
+```bash
+docker build -t awswebautomation .
+```
+Dockerfile
+```bash
+FROM maven:3.8.5-openjdk-11-slim
+COPY . /usr/src/app
+WORKDIR /usr/src/app
+RUN mvn clean install -DskipTests=true
+CMD ["mvn", "test"]
+```
 
 
-
+### Running Selenium Standalone with Chrome
+```bash
+docker run -d -p 4444:4444 --shm-size="2g" selenium/standalone-chrome:4.1.4-20220427
+```
+### Running Allure report service
+```bash
+docker run -p 5050:5050 -v allure-results:/app/allure-results -v allure-reports:/app/allure-reports -e CHECK_RESULTS_EVERY_SECONDS=3 -e KEEP_HISTORY=1 frankescobar/allure-docker-service
+```
+### Running our image
+```bash
+docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#amazonPrimeScenarios -DHOST="host.docker.container"
+```
 
 
