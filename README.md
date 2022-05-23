@@ -66,11 +66,17 @@ Four scenarios are available, class TestAWSWeb:
  - searchBarScenarios: Select different departments in the search bar and then search for a product.
 
 ## Docker 
-In this section, let's execute our automation using Docker.
-For that, we need a Selenium Server and for report we'll use Allure Report.
+In this section, we will run our automation using Docker.
+For this we need a Selenium StandAlone Server and for the report we will use Allure Report Service.
+
+For more information:
+[Docker images using Selenium](https://github.com/SeleniumHQ/docker-selenium)
+[Allure Report](https://docs.qameta.io/allure/)
+[Docker image for Allure Report](https://github.com/fescobar/allure-docker-service)
+
 
 ### Generate the image
-Generate the image from project folder using the Dockerfile.
+Easiest  way: copy the Dockerfile to project root folder and then execute the following command
 ```bash
 docker build -t awswebautomation .
 ```
@@ -83,20 +89,21 @@ RUN mvn clean install -DskipTests=true
 CMD ["mvn", "test"]
 ```
 
-
 ### Running Selenium Standalone with Chrome
+We'll run the Selenuium Standalone Server with Chrome. You can check its page after running http://localhost:4444/ui.
 ```bash
 docker run -d -p 4444:4444 --shm-size="2g" selenium/standalone-chrome:4.1.4-20220427
 ```
 ### Running Allure report service
 ```bash
-docker run -d -p 5050:5050 -v allure-results:/app/allure-results -v allure-reports:/app/allure-reports -e CHECK_RESULTS_EVERY_SECONDS=3 -e KEEP_HISTORY=1 frankescobar/allure-docker-service
+docker run -d -p 5050:5050 -v allure-results:/app/allure-results -v allure-reports:/app/allure-reports -e CHECK_RESULTS_EVERY_SECONDS=5 -e KEEP_HISTORY=20 frankescobar/allure-docker-service
 ```
 ### Running the automation
 In this example, a scenario is specified using '-Dtest=TestAWSWeb#amazonPrimeScenarios', but you can change the scenario or remove to execute all.
 ```bash
 docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#amazonPrimeScenarios -DHOST="host.docker.container"
 ```
-### Access the Report
+### Watch the automantion and access the report
+For watching each scenario, you have to access http://localhost:4444/ui -> Session -> Click on Session ID. The password is 'secret'
 Check the results: http://localhost:5050/allure-docker-service/projects/default/reports/latest/index.html#
 
