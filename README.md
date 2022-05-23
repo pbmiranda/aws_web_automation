@@ -4,7 +4,7 @@ This project is a framework for Web Automation written in Java. Classes and basi
 
 ## External dependencies
 
-For this project to run, you would need to install below 3 dependencies on your machine:
+For this project to run, you would need to install below 4 dependencies on your machine:
 
 - **[Java 11](https://openjdk.java.net/projects/jdk/11/)** (as the core programming language)
 - **[Maven 3.8.5](https://maven.apache.org/download.cgi)** (for dependency management)
