@@ -86,7 +86,6 @@ FROM maven:3.8.5-openjdk-11-slim
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 RUN mvn clean install -DskipTests=true
-CMD ["mvn", "test"]
 ```
 
 ### Running Selenium Standalone with Chrome
@@ -104,11 +103,11 @@ docker run -d -p 5050:5050 -v allure-results:/app/allure-results -v allure-repor
 In this example, we are
  - Setting a specific scenario '-Dtest=TestAWSWeb#amazonPrimeScenarios', but you can change the scenario or remove to execute all.
  - Indicating the browser '-DBROWSER=chrome'. If you change the the Selenium Server to Edge for example, you change the value to 'edge'
- - Indicating the host -DHOST="host.docker.container"
+ - Indicating the host -DHOST=host.docker.container
  - Configuring the volume for allure report
  
 ```bash
-docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#amazonPrimeScenarios -DBROWSER=chrome -DHOST="host.docker.container"
+docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#amazonPrimeScenarios -DBROWSER=chrome -DHOST=host.docker.container
 ```
 ### Watch the automantion and access the report
  - For watching each scenario: access http://localhost:4444/ui -> Sessions -> Click on 'VideoCam Icon'. The password is 'secret'.
