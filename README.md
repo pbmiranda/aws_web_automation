@@ -97,5 +97,6 @@ In this example, a scenario is specified using '-Dtest=TestAWSWeb#amazonPrimeSce
 ```bash
 docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#amazonPrimeScenarios -DHOST="host.docker.container"
 ```
-
+### Access the Report
+Check the results: http://localhost:5050/allure-docker-service/projects/default/reports/latest/index.html#
 
