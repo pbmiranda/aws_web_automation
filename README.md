@@ -106,6 +106,6 @@ In this example, a scenario is specified using '-Dtest=TestAWSWeb#amazonPrimeSce
 docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#amazonPrimeScenarios -DHOST="host.docker.container"
 ```
 ### Watch the automantion and access the report
- - For watching each scenario: access http://localhost:4444/ui -> Session -> Click on Session ID. The password is 'secret'.
+ - For watching each scenario: access http://localhost:4444/ui -> Session -> Click on 'VideoCam Icon' from Session ID. The password is 'secret'.
  - Check the report: http://localhost:5050/allure-docker-service/projects/default/reports/latest/index.html#
 
