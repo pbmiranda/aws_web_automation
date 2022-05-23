@@ -9,6 +9,7 @@ For this project to run, you would need to install below 3 dependencies on your 
 - **[Java 11](https://openjdk.java.net/projects/jdk/11/)** (as the core programming language)
 - **[Maven 3.8.5](https://maven.apache.org/download.cgi)** (for dependency management)
 - **[Google Chrome latest version](https://www.google.com/chrome/?brand=CHBD&gclid=Cj0KCQjwr-SSBhC9ARIsANhzu15P0PA-n9Zp4NpxKaOHVGtBD1TZQH0HlQQE6hUfsOFAU1nf-Rzdlf4aAoTJEALw_wcB&gclsrc=aw.ds)** (browser to run your tests)
+- **[Docker Engine 20.10.14](https://docs.docker.com/get-docker/)** (for running automations in container)
 
 > If your JAVA_HOME is set to anything other than JDK 11, you would need to update the path. Else your project
 > will not run. Also, do remember to set the correct JDK settings in your IDE.
