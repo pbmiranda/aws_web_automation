@@ -113,7 +113,7 @@ docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-re
 ```
 ### Watch the automantion and access the report
  - For watching each scenario: access http://localhost:4444/ui -> Sessions -> Click on 'VideoCam Icon'. The password is 'secret'.
-  IMPORTANT: do not click on video or send comands while watching , otherwise the automation might broken.
+  IMPORTANT: VNC allows sending commands, so do not click on video or send comands while watching , otherwise the automation might broken.
   
  ![image](https://user-images.githubusercontent.com/105996291/169858803-842c557c-1ddc-4b7e-8e1f-9732643c6015.png)
 
