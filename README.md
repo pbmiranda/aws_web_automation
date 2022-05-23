@@ -1,6 +1,6 @@
 # Aws Web automation
 
-This project represents a Web Automation for AWS Web Site.
+This project is a framework for Web Automation written in Java. Classes and basic scenarios were created for [Amazon Web Page ](https://www.amazon.in/)
 
 ## External dependencies
 
@@ -9,6 +9,7 @@ For this project to run, you would need to install below 3 dependencies on your 
 - **[Java 11](https://openjdk.java.net/projects/jdk/11/)** (as the core programming language)
 - **[Maven 3.8.5](https://maven.apache.org/download.cgi)** (for dependency management)
 - **[Google Chrome latest version](https://www.google.com/chrome/?brand=CHBD&gclid=Cj0KCQjwr-SSBhC9ARIsANhzu15P0PA-n9Zp4NpxKaOHVGtBD1TZQH0HlQQE6hUfsOFAU1nf-Rzdlf4aAoTJEALw_wcB&gclsrc=aw.ds)** (browser to run your tests)
+- **[Docker Engine 20.10.14](https://docs.docker.com/get-docker/)** (for running automations in container)
 
 > If your JAVA_HOME is set to anything other than JDK 11, you would need to update the path. Else your project
 > will not run. Also, do remember to set the correct JDK settings in your IDE.
@@ -55,9 +56,47 @@ Main methods available in the AbstractPageComponent.
    
 ## Test Data
 The files containing the test data are located in /resources/test_data. For each file we specify the same test method name (e.g. sortByScenarios.csv).
+The fields are sperated by "|". The last field is the assertion, the others fields depend on the test case.
+
+## Scenarios
+Four scenarios are avaible, class TestAWSWeb:
+ - sortByScenarios: navigate to a specific product and then sort by using all options available
+ - amazonPrimeScenarios: navigate to a product and select "Get It by Tomorrow" or "Get It in 2 Days"
+ - mainFilterCategoriesScenarios: navigate to a product and select each of main caterogy filter ("Brands->Samsung", "Item Condition->New",etc)
+ - searchBarScenarios: select differents departaments in the search bar and then search for a product
+
+## Docker 
+In this section, let's execute our automation using Docker.
+For that, we need a Selenium Server and for report we'll use Allure Report.
+
+### Generate the image
+Generate the image from project folder using the Dockerfile.
+```bash
+docker build -t awswebautomation .
+```
+Dockerfile
+```bash
+FROM maven:3.8.5-openjdk-11-slim
+COPY . /usr/src/app
+WORKDIR /usr/src/app
+RUN mvn clean install -DskipTests=true
+CMD ["mvn", "test"]
+```
 
 
-
-
-
+### Running Selenium Standalone with Chrome
+```bash
+docker run -d -p 4444:4444 --shm-size="2g" selenium/standalone-chrome:4.1.4-20220427
+```
+### Running Allure report service
+```bash
+docker run -p 5050:5050 -v allure-results:/app/allure-results -v allure-reports:/app/allure-reports -e CHECK_RESULTS_EVERY_SECONDS=3 -e KEEP_HISTORY=1 frankescobar/allure-docker-service
+```
+### Running the automation
+In this example, a scenario is specified using '-Dtest=TestAWSWeb#amazonPrimeScenarios', but you can change the scenario or remove to execute all.
+```bash
+docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#amazonPrimeScenarios -DHOST="host.docker.container"
+```
+### Access the Report
+Check the results: http://localhost:5050/allure-docker-service/projects/default/reports/latest/index.html#
 
