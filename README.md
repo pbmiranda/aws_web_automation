@@ -90,7 +90,7 @@ docker run -d -p 4444:4444 --shm-size="2g" selenium/standalone-chrome:4.1.4-2022
 ```
 ### Running Allure report service
 ```bash
-docker run -p 5050:5050 -v allure-results:/app/allure-results -v allure-reports:/app/allure-reports -e CHECK_RESULTS_EVERY_SECONDS=3 -e KEEP_HISTORY=1 frankescobar/allure-docker-service
+docker run -d -p 5050:5050 -v allure-results:/app/allure-results -v allure-reports:/app/allure-reports -e CHECK_RESULTS_EVERY_SECONDS=3 -e KEEP_HISTORY=1 frankescobar/allure-docker-service
 ```
 ### Running the automation
 In this example, a scenario is specified using '-Dtest=TestAWSWeb#amazonPrimeScenarios', but you can change the scenario or remove to execute all.
