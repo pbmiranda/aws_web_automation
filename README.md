@@ -55,6 +55,14 @@ Main methods available in the AbstractPageComponent.
    
 ## Test Data
 The files containing the test data are located in /resources/test_data. For each file we specify the same test method name (e.g. sortByScenarios.csv).
+The fields are sperated by "|". The last field is the assertion, the others fields depend on the test case.
+
+## Scenarios
+Four scenarios are avaible, class TestAWSWeb:
+ - sortByScenarios: navigate to a specific product and then sort by using all options available
+ - amazonPrimeScenarios: navigate to a product and select "Get It by Tomorrow" or "Get It in 2 Days"
+ - mainFilterCategoriesScenarios: navigate to a product and select each of main caterogy filter ("Brands->Samsung", "Item Condition->New",etc)
+ - searchBarScenarios: select differents departaments in the search bar and then search for a product
 
 
 
