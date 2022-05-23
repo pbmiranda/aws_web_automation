@@ -101,9 +101,14 @@ docker run -d -p 4444:4444 --shm-size="2g" selenium/standalone-chrome:4.1.4-2022
 docker run -d -p 5050:5050 -v allure-results:/app/allure-results -v allure-reports:/app/allure-reports -e CHECK_RESULTS_EVERY_SECONDS=5 -e KEEP_HISTORY=20 frankescobar/allure-docker-service
 ```
 ### Running the automation
-In this example, a scenario is specified using '-Dtest=TestAWSWeb#amazonPrimeScenarios', but you can change the scenario or remove to execute all.
+In this example, we are
+ - Setting a specific scenario '-Dtest=TestAWSWeb#amazonPrimeScenarios', but you can change the scenario or remove to execute all.
+ - Indicating the browser '-DBROWSER=chrome'. If you change the the Selenium Server to Edge for example, you change the value to 'edge'
+ - Indicating the host -DHOST="host.docker.container"
+ - Configuring the volume for allure report
+ 
 ```bash
-docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#amazonPrimeScenarios -DHOST="host.docker.container"
+docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#amazonPrimeScenarios -DBROWSER=chrome -DHOST="host.docker.container"
 ```
 ### Watch the automantion and access the report
  - For watching each scenario: access http://localhost:4444/ui -> Sessions -> Click on 'VideoCam Icon'. The password is 'secret'.
