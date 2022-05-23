@@ -70,9 +70,9 @@ In this section, we will run our automation using Docker.
 For this we need a Selenium StandAlone Server and for the report we will use Allure Report Service.
 
 For more information:
-[Docker images using Selenium](https://github.com/SeleniumHQ/docker-selenium)
-[Allure Report](https://docs.qameta.io/allure/)
-[Docker image for Allure Report](https://github.com/fescobar/allure-docker-service)
+- [Docker images using Selenium](https://github.com/SeleniumHQ/docker-selenium)
+- [Allure Report](https://docs.qameta.io/allure/)
+- [Docker image for Allure Report](https://github.com/fescobar/allure-docker-service)
 
 
 ### Generate the image
@@ -90,7 +90,9 @@ CMD ["mvn", "test"]
 ```
 
 ### Running Selenium Standalone with Chrome
-We'll run the Selenuium Standalone Server with Chrome. You can check its page after running http://localhost:4444/ui.
+We'll run the Selenuium Standalone Server with Chrome. You can check its page after running 
+http://localhost:4444/ui.
+
 ```bash
 docker run -d -p 4444:4444 --shm-size="2g" selenium/standalone-chrome:4.1.4-20220427
 ```
