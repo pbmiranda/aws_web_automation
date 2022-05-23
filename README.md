@@ -1,6 +1,6 @@
 # Aws Web automation
 
-This project represents a Web Automation for AWS Web Site.
+This project is a framework for Web Automation written in Java. Classes and basic scerarios were created for [Amazon Web Page ](https://www.amazon.in/)
 
 ## External dependencies
 
