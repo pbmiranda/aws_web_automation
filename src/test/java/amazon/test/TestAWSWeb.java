@@ -12,7 +12,11 @@ import amazon.config.EnvFactory;
 import amazon.pageobject.Menu;
 import amazon.pageobject.Product;
 import amazon.pageobject.SearchBar;
-import lombok.extern.java.Log;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,12 +27,16 @@ import lombok.extern.slf4j.Slf4j;
  * Each method is associated to a file used as input
  */
 
+@Feature("Search for Products")
 @Slf4j
 public class TestAWSWeb extends TestAbstract {
 
 	private static Config config = EnvFactory.getInstance().getConfig();
 	private static final String HOME_PAGE_URL = config.getString("HOME_PAGE_URL");
 
+	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify sort by Options")
+	@Story("Test type of sorting by Product")
 	@ParameterizedTest
 	@CsvFileSource(resources = "/test_data/sortByScenarios.csv", delimiter = '|')
 	void sortByScenarios(ArgumentsAccessor accessor) {
@@ -58,7 +66,9 @@ public class TestAWSWeb extends TestAbstract {
 		assertTrue(product.assertion(mainAssertion));
 	}
 
-	
+	@Severity(SeverityLevel.BLOCKER)
+	@Description("Verify Amazon Prime Options")
+	@Story("Test option Amazon Prime for Products")
 	@ParameterizedTest
 	@CsvFileSource(resources = "/test_data/amazonPrimeScenarios.csv", delimiter = '|')
 	void amazonPrimeScenarios(ArgumentsAccessor accessor) {
@@ -66,14 +76,11 @@ public class TestAWSWeb extends TestAbstract {
 		String menuAll = accessor.getString(0);
 		
 		String sector = accessor.getString(1);
-		String subSector = accessor.getString(2);
-		
+		String subSector = accessor.getString(2);		
 		String sectionFilter1 = accessor.getString(3);
 		String sectionFilterItem1 = accessor.getString(4);		
-		
 		String sectionFilter2 = accessor.getString(5);
-		String sectionFilterItem2 = accessor.getString(6);
-		
+		String sectionFilterItem2 = accessor.getString(6);		
 		String productIndex = accessor.getString(7);
 		String mainAssertion = accessor.getString(8);
 
@@ -86,14 +93,16 @@ public class TestAWSWeb extends TestAbstract {
 		menu.sideBarClick(subSector);
 
 		product.selectRefinement(sectionFilter1, sectionFilterItem1);
-		product.selectRefinement(sectionFilter2, sectionFilterItem2);	
-		
+		product.selectRefinement(sectionFilter2, sectionFilterItem2);		
 		product.selectProductByIndex(productIndex);
 		product.switchWindowByIndex(1);
 
 		assertTrue(product.assertion(mainAssertion));
 	}
 	
+	@Severity(SeverityLevel.NORMAL)
+	@Description("Verify main filter categories available")
+	@Story("Test filter by categories")
 	@ParameterizedTest
 	@CsvFileSource(resources = "/test_data/mainFilterCategoriesScenarios.csv", delimiter = '|')
 	void mainFilterCategoriesScenarios(ArgumentsAccessor accessor) {
@@ -123,6 +132,9 @@ public class TestAWSWeb extends TestAbstract {
 	}
 
 	
+	@Severity(SeverityLevel.NORMAL)
+	@Description("Verify Search by Departament")
+	@Story("Test searching by departments")
 	@ParameterizedTest
 	@CsvFileSource(resources = "/test_data/searchBarScenarios.csv", delimiter = '|')
 	void searchBarScenarios(ArgumentsAccessor accessor) {
@@ -135,8 +147,7 @@ public class TestAWSWeb extends TestAbstract {
 		SearchBar searchBar = new SearchBar(getDriver());
 		Product product = new Product(getDriver());
 
-		searchBar.open(HOME_PAGE_URL);
-		
+		searchBar.open(HOME_PAGE_URL);		
 		if(!searcBarComboText.equals("All Categories")) {
 			searchBar.selectDepartament(searcBarComboText);	
 		}		
