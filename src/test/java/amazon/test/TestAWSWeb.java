@@ -12,6 +12,8 @@ import amazon.config.EnvFactory;
 import amazon.pageobject.Menu;
 import amazon.pageobject.Product;
 import amazon.pageobject.SearchBar;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
@@ -21,6 +23,7 @@ import amazon.pageobject.SearchBar;
  * Each method is associated to a file used as input
  */
 
+@Slf4j
 public class TestAWSWeb extends TestAbstract {
 
 	private static Config config = EnvFactory.getInstance().getConfig();
@@ -29,7 +32,7 @@ public class TestAWSWeb extends TestAbstract {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/test_data/sortByScenarios.csv", delimiter = '|')
 	void sortByScenarios(ArgumentsAccessor accessor) {
-
+		log.info("->>> sortByScenarios | data={}", accessor.toList());
 		String menuAll = accessor.getString(0);
 		String sector = accessor.getString(1);
 		String subSector = accessor.getString(2);
@@ -59,7 +62,7 @@ public class TestAWSWeb extends TestAbstract {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/test_data/amazonPrimeScenarios.csv", delimiter = '|')
 	void amazonPrimeScenarios(ArgumentsAccessor accessor) {
-
+		log.info("->>> amazonPrimeScenarios | data={}", accessor.toList());
 		String menuAll = accessor.getString(0);
 		
 		String sector = accessor.getString(1);
@@ -94,6 +97,8 @@ public class TestAWSWeb extends TestAbstract {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/test_data/mainFilterCategoriesScenarios.csv", delimiter = '|')
 	void mainFilterCategoriesScenarios(ArgumentsAccessor accessor) {
+		log.info("->>> mainFilterCategoriesScenarios | data={}", accessor.toList());
+		
 		String menuAll = accessor.getString(0);
 		String sector = accessor.getString(1);
 		String subSector = accessor.getString(2);
@@ -120,12 +125,12 @@ public class TestAWSWeb extends TestAbstract {
 	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/test_data/searchBarScenarios.csv", delimiter = '|')
-	void searchBarScenarios(ArgumentsAccessor argumentsAccessor) {
-		
-		String searcBarComboText = argumentsAccessor.getString(0);
-		String searcBarText = argumentsAccessor.getString(1);
-		String productIndex = argumentsAccessor.getString(2);
-		String assertionText = argumentsAccessor.getString(3);
+	void searchBarScenarios(ArgumentsAccessor accessor) {
+		log.info("->>> searchBarScenarios | data={}", accessor.toList());
+		String searcBarComboText = accessor.getString(0);
+		String searcBarText = accessor.getString(1);
+		String productIndex = accessor.getString(2);
+		String assertionText = accessor.getString(3);
 		
 		SearchBar searchBar = new SearchBar(getDriver());
 		Product product = new Product(getDriver());
