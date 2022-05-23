@@ -113,7 +113,9 @@ docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-re
  - For watching each scenario: access http://localhost:4444/ui -> Sessions -> Click on 'VideoCam Icon'. The password is 'secret'.
  - Check the report: http://localhost:5050/allure-docker-service/projects/default/reports/latest/index.html#
 ![image](https://user-images.githubusercontent.com/105996291/169846857-77a09c81-3691-49c0-aee7-bb699cd20efe.png)
+
 ![image](https://user-images.githubusercontent.com/105996291/169846901-67bcb85e-4557-4a8b-a68d-80ad418482f2.png)
+
 ![image](https://user-images.githubusercontent.com/105996291/169846995-39000f97-e433-4c0c-8793-f7da9db9767b.png)
 
 
