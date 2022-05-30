@@ -111,7 +111,7 @@ In this example, we are
 ```bash
 docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#sortByScenarios -DBROWSER=chrome -DHOST=host.docker.container
 ```
-### Watch the automantion and access the report
+### Watch the automation and access the report
  - For watching each scenario: access http://localhost:4444/ui -> Sessions -> Click on 'VideoCam Icon'. The password is 'secret'.
   IMPORTANT: VNC allows sending commands, so do not click on video or send comands while watching , otherwise the automation might broken.
   
