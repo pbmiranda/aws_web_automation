@@ -4,7 +4,7 @@ This project is a framework for Web Automation written in Java. Classes and basi
 
 ## External dependencies
 
-For this project to run, you would need to install below 3 dependencies on your machine:
+For this project to run, you would need to install below 4 dependencies on your machine:
 
 - **[Java 11](https://openjdk.java.net/projects/jdk/11/)** (as the core programming language)
 - **[Maven 3.8.5](https://maven.apache.org/download.cgi)** (for dependency management)
@@ -111,7 +111,7 @@ In this example, we are
 ```bash
 docker run --net host -v allure-results:/usr/src/app/allure-results -v allure-reports:/usr/src/app/allure-reports awswebautomation mvn test -Dtest=TestAWSWeb#sortByScenarios -DBROWSER=chrome -DHOST=host.docker.container
 ```
-### Watch the automantion and access the report
+### Watch the automation and access the report
  - For watching each scenario: access http://localhost:4444/ui -> Sessions -> Click on 'VideoCam Icon'. The password is 'secret'.
   IMPORTANT: VNC allows sending commands, so do not click on video or send comands while watching , otherwise the automation might broken.
   
