@@ -21,10 +21,10 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
- * @author Phelipe Miranda 
- *  
- * This class represents the Tests  
- * Each method is associated to a file used as input
+ * @author Phelipe Miranda
+ * 
+ *         This class represents the Tests Each method is associated to a file
+ *         used as input
  */
 
 @Feature("Search for Products")
@@ -54,6 +54,7 @@ public class TestAWSWeb extends TestAbstract {
 		Product product = new Product(getDriver());
 
 		menu.open(HOME_PAGE_URL);
+
 		menu.mainClick(menuAll);
 		menu.sideBarClick(sector);
 		menu.sideBarClick(subSector);
@@ -74,13 +75,13 @@ public class TestAWSWeb extends TestAbstract {
 	void amazonPrimeScenarios(ArgumentsAccessor accessor) {
 		log.info("->>> amazonPrimeScenarios | data={}", accessor.toList());
 		String menuAll = accessor.getString(0);
-		
+
 		String sector = accessor.getString(1);
-		String subSector = accessor.getString(2);		
+		String subSector = accessor.getString(2);
 		String sectionFilter1 = accessor.getString(3);
-		String sectionFilterItem1 = accessor.getString(4);		
+		String sectionFilterItem1 = accessor.getString(4);
 		String sectionFilter2 = accessor.getString(5);
-		String sectionFilterItem2 = accessor.getString(6);		
+		String sectionFilterItem2 = accessor.getString(6);
 		String productIndex = accessor.getString(7);
 		String mainAssertion = accessor.getString(8);
 
@@ -93,13 +94,13 @@ public class TestAWSWeb extends TestAbstract {
 		menu.sideBarClick(subSector);
 
 		product.selectRefinement(sectionFilter1, sectionFilterItem1);
-		product.selectRefinement(sectionFilter2, sectionFilterItem2);		
+		product.selectRefinement(sectionFilter2, sectionFilterItem2);
 		product.selectProductByIndex(productIndex);
 		product.switchWindowByIndex(1);
 
 		assertTrue(product.assertion(mainAssertion));
 	}
-	
+
 	@Severity(SeverityLevel.NORMAL)
 	@Description("Verify main filter categories available")
 	@Story("Test filter by categories")
@@ -107,12 +108,12 @@ public class TestAWSWeb extends TestAbstract {
 	@CsvFileSource(resources = "/test_data/mainFilterCategoriesScenarios.csv", delimiter = '|')
 	void mainFilterCategoriesScenarios(ArgumentsAccessor accessor) {
 		log.info("->>> mainFilterCategoriesScenarios | data={}", accessor.toList());
-		
+
 		String menuAll = accessor.getString(0);
 		String sector = accessor.getString(1);
 		String subSector = accessor.getString(2);
 		String sectionFilter = accessor.getString(3);
-		String sectionFilterItem = accessor.getString(4);	
+		String sectionFilterItem = accessor.getString(4);
 		String productIndex = accessor.getString(5);
 		String mainAssertion = accessor.getString(6);
 
@@ -124,14 +125,13 @@ public class TestAWSWeb extends TestAbstract {
 		menu.sideBarClick(sector);
 		menu.sideBarClick(subSector);
 
-		product.selectRefinement(sectionFilter, sectionFilterItem);		
+		product.selectRefinement(sectionFilter, sectionFilterItem);
 		product.selectProductByIndex(productIndex);
 		product.switchWindowByIndex(1);
 
 		assertTrue(product.assertion(mainAssertion));
 	}
 
-	
 	@Severity(SeverityLevel.NORMAL)
 	@Description("Verify Search by Departament")
 	@Story("Test searching by departments")
@@ -143,14 +143,14 @@ public class TestAWSWeb extends TestAbstract {
 		String searcBarText = accessor.getString(1);
 		String productIndex = accessor.getString(2);
 		String assertionText = accessor.getString(3);
-		
+
 		SearchBar searchBar = new SearchBar(getDriver());
 		Product product = new Product(getDriver());
 
-		searchBar.open(HOME_PAGE_URL);		
-		if(!searcBarComboText.equals("All Categories")) {
-			searchBar.selectDepartament(searcBarComboText);	
-		}		
+		searchBar.open(HOME_PAGE_URL);
+		if (!searcBarComboText.equals("All Categories")) {
+			searchBar.selectDepartament(searcBarComboText);
+		}
 		searchBar.type(searcBarText);
 		searchBar.pressSearchButton();
 
