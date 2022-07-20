@@ -4,6 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.typesafe.config.Config;
+
+import amazon.config.EnvFactory;
+
 /**
  * 
  * @author Phelipe Miranda
@@ -14,6 +18,7 @@ import org.openqa.selenium.WebElement;
  */
 public abstract class AbstractPageComponent {
 
+	private static Config config = EnvFactory.getInstance().getConfig();
 	private WebDriver driver;
 
 	public AbstractPageComponent(WebDriver driver) {
@@ -28,6 +33,7 @@ public abstract class AbstractPageComponent {
 	 * @return - WebElement
 	 */
 	protected WebElement findByAttr(String attr, String value) {
+		pace();
 		WebElement e = driver.findElement(By.xpath("//*[@" + attr + "='" + value + "']"));
 		return e;
 	}
@@ -40,6 +46,7 @@ public abstract class AbstractPageComponent {
 	 * @param text     - the element text
 	 */
 	protected void typeByAttr(String attrName, String value, String text) {
+		pace();
 		findByAttr(attrName, value).sendKeys(text);
 	}
 
@@ -51,6 +58,7 @@ public abstract class AbstractPageComponent {
 	 * @param text     - the element text
 	 */
 	protected void clickByAttr(String attrName, String value) {
+		pace();
 		findByAttr(attrName, value).click();
 	}
 
@@ -61,6 +69,7 @@ public abstract class AbstractPageComponent {
 	 * @return - WebElement
 	 */
 	protected WebElement findByXPath(String xpath) {
+		pace();
 		WebElement e = driver.findElement(By.xpath(xpath));
 		return e;
 	}
@@ -72,6 +81,7 @@ public abstract class AbstractPageComponent {
 	 * @param text  - the text that will be typed
 	 */
 	protected void typeByXPath(String xpath, String text) {
+		pace();
 		findByXPath(xpath).sendKeys(text);
 	}
 
@@ -81,6 +91,7 @@ public abstract class AbstractPageComponent {
 	 * @param text - the xpath for locating the element
 	 */
 	protected void clickByXPath(String xpath) {
+		pace();
 		findByXPath(xpath).click();
 	}
 
@@ -91,6 +102,7 @@ public abstract class AbstractPageComponent {
 	 * @return WebElement
 	 */
 	protected WebElement findByText(String text) {
+		pace();
 		return findByXPath("//*[normalize-space(text())= \"" + text.trim() + "\"]");
 	}
 
@@ -103,6 +115,7 @@ public abstract class AbstractPageComponent {
 	 * @return WebElement
 	 */
 	protected WebElement findByParentIdAndTextEquals(String parentId, String text) {
+		pace();
 		String xpath = "//*[@id='" + parentId + "']//*[normalize-space(text())='" + text.trim() + "']";
 		return driver.findElement(By.xpath(xpath));
 	}
@@ -116,6 +129,7 @@ public abstract class AbstractPageComponent {
 	 * @return WebElement
 	 */
 	protected WebElement findByParentIdAndTextContains(String parentId, String text) {
+		pace();
 		String xpath = "//*[@id='" + parentId + "']//*[contains(normalize-space(text()),'" + text.trim() + "')]";
 		return driver.findElement(By.xpath(xpath));
 	}
@@ -128,6 +142,7 @@ public abstract class AbstractPageComponent {
 	 * @return WebElement
 	 */
 	protected void clickByParentIdAndText(String parentId, String text) {
+		pace();
 		findByParentIdAndTextEquals(parentId, text).click();
 	}
 
@@ -161,5 +176,18 @@ public abstract class AbstractPageComponent {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Executes a pause before each method, default value is ZERO.
+	 */
+	private void pace() {
+		long sleep = 0l;
+		try {
+			sleep = config.getLong("PACE");
+		} catch (Exception e) {
+			
+		}
+		await(sleep);
 	}
 }
