@@ -1,4 +1,4 @@
-# Aws Web Automation
+# Aws Web Automation using Selenium/Java
 
 This project is a framework for Web Automation written in Java. Classes and basic scenarios were created for [Amazon Web Page ](https://www.amazon.in/)
 
