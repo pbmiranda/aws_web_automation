@@ -1,1 +1,0 @@
-	Necessita de mais informações
